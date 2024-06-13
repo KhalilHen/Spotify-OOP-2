@@ -6,7 +6,8 @@ namespace Spotivy
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome to Spotivy!");
+            Console.WriteLine("Who is listening?");
         }
     }
 }
