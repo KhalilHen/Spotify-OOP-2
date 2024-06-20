@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class User(String name, String password)
+    internal class User : Person
     {
-        int id;
-        String name = name;
-        private String password = password;
-
-        public String getName()
-        {
-            return name;
-        }
+        List<User> friendlist;
     }
 }

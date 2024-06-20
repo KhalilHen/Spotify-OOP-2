@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class PlayList
+    internal class PlayList : Songlist
     {
     }
 }

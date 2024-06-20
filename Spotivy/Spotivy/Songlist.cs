@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class Album
+    internal class Songlist
     {
+        String title;
+        List<Song> songlist;
+        List<Person> personList;
     }
 }
