@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class User
+    internal class User : Person
     {
+        List<User> friendlist;
     }
 }
