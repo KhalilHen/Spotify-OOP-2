@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class MainUser
+    internal class Client
     {
+        User mainUser;
+
+        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists)
+        {
+           
+        }
+
+       
     }
+
+    
 }
