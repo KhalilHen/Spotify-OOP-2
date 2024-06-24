@@ -46,11 +46,6 @@ namespace Spotivy
 
             Client client = new Client(users, artists, songs, songlists);
 
-
-
-            Console.WriteLine("Welcome to Spotivy!");
-            Console.WriteLine("Who is listening?");
-
         }
     }
 }

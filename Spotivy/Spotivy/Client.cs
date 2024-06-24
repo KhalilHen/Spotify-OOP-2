@@ -20,9 +20,7 @@ namespace Spotivy
             this.artists = artists;
             this.songs = songs;
             this.songlists = songlists;
-        }
-
-       
+        }       
     }
 
     
