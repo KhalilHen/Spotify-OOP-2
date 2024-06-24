@@ -45,7 +45,6 @@ namespace Spotivy
             songlists.Add(songlist2);
 
             Client client = new Client(users, artists, songs, songlists);
-
         }
     }
 }
