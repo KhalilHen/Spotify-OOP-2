@@ -13,6 +13,7 @@ namespace Spotivy
         List<Artist> artists;
         List<Song> songs;
         List<Songlist> songlists;
+
         public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists)
         {
             this.users = users;
