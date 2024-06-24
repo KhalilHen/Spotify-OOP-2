@@ -8,5 +8,6 @@ namespace Spotivy
 {
     internal class Artist
     {
+        List<Song> singles;
     }
 }

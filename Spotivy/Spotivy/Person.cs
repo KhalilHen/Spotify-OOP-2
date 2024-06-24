@@ -8,5 +8,7 @@ namespace Spotivy
 {
     internal class Person
     {
+        String name;
+        List<Songlist> songlistList;
     }
 }
