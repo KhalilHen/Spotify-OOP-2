@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,5 +24,22 @@ namespace Spotivy
         }       
     }
 
-    
+        public void logIn()
+        {
+            Console.WriteLine("Welcome to Spotivy!");
+            Console.WriteLine("\nWho is listening?");
+
+
+            ConsoleKeyInfo key;
+
+            while (true)
+            {
+                Console.WriteLine("\u001b[32m" + user1.getName() + "\u001b[0m");
+                Console.WriteLine(user2.getName());
+                Console.WriteLine(user3.getName());
+
+                key = Console.ReadKey(true);
+            }
+        }
+
 }
