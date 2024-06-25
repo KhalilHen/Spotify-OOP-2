@@ -14,6 +14,7 @@ namespace Spotivy
         List<Artist> artists;
         List<Song> songs;
         List<Songlist> songlists;
+        Boolean isLoggedIn;
 
         public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists)
         {
@@ -22,7 +23,17 @@ namespace Spotivy
             this.songs = songs;
             this.songlists = songlists;
         }
-        public void logIn()
+
+        public void client()
+        {
+            logIn();
+            if (isLoggedIn == true)
+            {
+                viewSongs();
+            }
+
+        }
+        public Boolean logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");
             Console.WriteLine("Who is listening?\n");
@@ -36,8 +47,18 @@ namespace Spotivy
                     if (user.name == chosenUser)
                     {
                         mainUser = user;
+                        return isLoggedIn = true;
                     }
                 }
+            return isLoggedIn = false;
+        }
+
+        public void viewSongs()
+        {
+            foreach(Song song in songs)
+            {
+                Console.WriteLine(song.title);
+            }
         }
 
 

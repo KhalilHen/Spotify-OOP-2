@@ -9,8 +9,15 @@ namespace Spotivy
 {
     public class Song
     {
-        String title;
+        public String title;
         List<Artist> artists;
         String genre;
+
+        public Song(String title, List<Artist> artists, String genre)
+        {
+            this.title = title;
+            this.artists = artists;
+            this.genre = genre;
+        }
     }
 }

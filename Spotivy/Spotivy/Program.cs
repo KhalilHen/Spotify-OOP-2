@@ -20,12 +20,15 @@ namespace Spotivy
             Artist artist1 = new Artist();
             Artist artist2 = new Artist();
             Artist artist3 = new Artist();
-            Song song1 = new Song();
-            Song song2 = new Song();
-            Song song3 = new Song();
-            Song song4 = new Song();
-            Song song5 = new Song();
-            Song song6 = new Song();
+
+            List<Artist> artistList1 = new List<Artist>();
+            artistList1.Add(artist1);
+            Song song1 = new Song("Titel1", artistList1, "Pop");
+            Song song2 = new Song("Titel2", artistList1, "Pop");
+            Song song3 = new Song("Titel3", artistList1, "Rock");
+            Song song4 = new Song("Titel4", artistList1, "Pop");
+            Song song5 = new Song("Titel5", artistList1, "Rock");
+            Song song6 = new Song("Titel6", artistList1, "Pop");
             Songlist songlist1 = new Songlist();
             Songlist songlist2 = new Songlist();
             
@@ -51,7 +54,8 @@ namespace Spotivy
 
             Client client = new Client(users, artists, songs, songlists);
 
-            client.logIn();
+            client.client();
+            
 
         }
     }
