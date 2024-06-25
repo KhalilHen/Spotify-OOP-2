@@ -8,9 +8,15 @@ namespace Spotivy
     {
         static void Main(string[] args)
         {
-            User user1 = new User();
-            User user2 = new User();
-            User user3 = new User();
+            List<Songlist> songlistList1 = new List<Songlist>();
+            List<Songlist> songlistList2 = new List<Songlist>();
+            List<Songlist> songlistList3 = new List<Songlist>();
+            List<User> friendlist1 = new List<User>();
+            List<User> friendlist2 = new List<User>();
+            List<User> friendlist3 = new List<User>();
+            User user1 = new User("Bo", songlistList1, friendlist1);
+            User user2 = new User("Khalil", songlistList2, friendlist2);
+            User user3 = new User("Robert", songlistList3, friendlist3);
             Artist artist1 = new Artist();
             Artist artist2 = new Artist();
             Artist artist3 = new Artist();
@@ -23,7 +29,6 @@ namespace Spotivy
             Songlist songlist1 = new Songlist();
             Songlist songlist2 = new Songlist();
             
-
             List<User> users = new List<User>();
             List<Artist> artists = new List<Artist>();
             List<Song> songs = new List<Song>();
@@ -45,6 +50,9 @@ namespace Spotivy
             songlists.Add(songlist2);
 
             Client client = new Client(users, artists, songs, songlists);
+
+            client.logIn();
+
         }
     }
 }

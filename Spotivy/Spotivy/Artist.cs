@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    internal class Artist
+    public class Artist
     {
         List<Song> singles;
     }
