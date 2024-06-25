@@ -21,25 +21,25 @@ namespace Spotivy
             this.artists = artists;
             this.songs = songs;
             this.songlists = songlists;
-        }       
-    }
-
+        }
         public void logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");
-            Console.WriteLine("\nWho is listening?");
-
-
-            ConsoleKeyInfo key;
-
-            while (true)
-            {
-                Console.WriteLine("\u001b[32m" + user1.getName() + "\u001b[0m");
-                Console.WriteLine(user2.getName());
-                Console.WriteLine(user3.getName());
-
-                key = Console.ReadKey(true);
-            }
+            Console.WriteLine("Who is listening?\n");
+                      
+                foreach (User user in users) {
+                    Console.WriteLine(user.getName());
+                }
+                string chosenUser = Console.ReadLine();
+                foreach (User user in users)
+                {
+                    if (user.name == chosenUser)
+                    {
+                        mainUser = user;
+                    }
+                }
         }
 
+
+    }
 }

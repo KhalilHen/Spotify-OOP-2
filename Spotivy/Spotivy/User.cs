@@ -8,14 +8,15 @@ using System.Xml.Linq;
 
 namespace Spotivy
 {
-    internal class User : Person
+    public class User : Person
     {
         List<User> friendlist;
 
-        public String getName()
+        public User(string name, List<Songlist> songlistList, List<User> friendlist) : base(name, songlistList)
         {
-            return name;
+            this.friendlist = friendlist;
         }
+            
     }
 
     
