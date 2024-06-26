@@ -8,8 +8,9 @@ namespace Spotivy
 {
     public class Person
     {
-        internal String name;
-        internal List<Songlist> songlistList;
+        String name;
+        List<Songlist> songlistList;
+        String songlistTitles;
 
         public Person(String name, List<Songlist> songlistList)
         {
@@ -20,6 +21,26 @@ namespace Spotivy
         public String getName()
         {
             return name;
+        }
+
+        public List<Songlist> getSonglistList()
+        {
+            return songlistList;
+        }
+
+        public String getSonglistListToString()
+        {
+            songlistTitles = string.Empty;
+            foreach (Songlist songlist in getSonglistList())
+            {
+                songlistTitles += songlist.getTitle() + "\n";
+            }
+            return songlistTitles;
+        }
+
+        public String viewSonglistList()
+        {
+            return "";
         }
     }
 

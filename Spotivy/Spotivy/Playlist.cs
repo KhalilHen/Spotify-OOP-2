@@ -8,5 +8,9 @@ namespace Spotivy
 {
     public class PlayList : Songlist
     {
+        public PlayList(String title, List<Song> songs) : base(title, songs)
+        {
+        }
+
     }
 }
