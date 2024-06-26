@@ -134,18 +134,21 @@ namespace Spotivy
                         }
                         break;
 
-                    case "3":
-                        // code block
-                        break;
-                    case "4":
-                        // code block
-                        break;
-                    case "5":
-                        // code block
-                        break;
-                    default:
-                        Console.WriteLine("\nInvalid input. Please enter a number from 1-5.");
-                        break;
+                    break;
+                case "3":
+
+                    mainUser.userList(users, mainUser);
+                    // code block
+                    break;
+                case "4":
+                    // code block
+                    break;
+                case "5":
+                    // code block
+                    break;
+                default:
+                    Console.WriteLine("\nInvalid input. Please enter a number from 1-5.");
+                    break;
                 }
             }
         }
