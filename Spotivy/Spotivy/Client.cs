@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,38 @@ namespace Spotivy
             {
                 viewSongs();
             }
-
+            Console.WriteLine("\nWhat would you like to do?");
+            Console.WriteLine("1: Play song");
+            Console.WriteLine("2: View playlists");
+            Console.WriteLine("3: Find users");
+            Console.WriteLine("4: Find artist");
+            String userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    Console.WriteLine("\nChoose a song to play.");
+                    String chosenSong = Console.ReadLine();
+                    foreach (Song song in songs)
+                    {
+                        if (song.getTitle() == chosenSong)
+                        {
+                            song.playSong();
+                        }
+                    }
+                    break;
+                case "2":
+                    // code block
+                    break;
+                case "3":
+                    // code block
+                    break;
+                case "4":
+                    // code block
+                    break;
+                default:
+                    Console.WriteLine("\nInvalid input. Please enter a number from 1-4.");
+                    break;
+            }
         }
         public Boolean logIn()
         {
@@ -41,10 +73,10 @@ namespace Spotivy
                 foreach (User user in users) {
                     Console.WriteLine(user.getName());
                 }
-                string chosenUser = Console.ReadLine();
+                String chosenUser = Console.ReadLine();
                 foreach (User user in users)
                 {
-                    if (user.name == chosenUser)
+                    if (user.getName() == chosenUser)
                     {
                         mainUser = user;
                         return isLoggedIn = true;
@@ -55,12 +87,15 @@ namespace Spotivy
 
         public void viewSongs()
         {
-            foreach(Song song in songs)
+            Console.WriteLine("");
+            foreach (Song song in songs)
             {
-                Console.WriteLine(song.title);
+                foreach (Artist artist in song.getArtists())
+                {
+                    String songArtists = artist.getName();
+                }
+                Console.WriteLine(song.getTitle() + " by " + song.getArtistNames());
             }
         }
-
-
     }
 }
