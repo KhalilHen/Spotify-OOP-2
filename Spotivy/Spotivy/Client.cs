@@ -80,6 +80,7 @@ namespace Spotivy
                     //playlist menu
                 case "2":
                     Console.WriteLine("\n" + mainUser.getSonglistListToString());
+
                     break;
                 case "3":
                     // code block
