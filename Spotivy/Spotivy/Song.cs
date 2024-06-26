@@ -49,5 +49,7 @@ namespace Spotivy
         {
             return "\nTitle: " + getTitle() + "\nArtists: " + getArtistNames() + "\nGenre: " + getGenre();
         }
+
+        
     }
 }
