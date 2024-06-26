@@ -35,9 +35,19 @@ namespace Spotivy
             return songArtists;
         }
 
-        public void playSong()
+        public String playSong()
         {
-            Console.WriteLine("\nCurrently playing: " + getTitle() + " by " + getArtistNames());
+            return "\nCurrently playing: " + getTitle() + " by " + getArtistNames();
+        }
+
+        public String pauseSong()
+        {
+            return "\nPaused: " + getTitle() + " by " + getArtistNames();
+        }
+
+        public String displayInfo()
+        {
+            return "\nTitle: " + getTitle() + "\nArtists: " + getArtistNames() + "\nGenre: " + getGenre();
         }
     }
 }

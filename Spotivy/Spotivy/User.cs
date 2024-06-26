@@ -21,7 +21,6 @@ namespace Spotivy
 
 
 
-
         }
         public void userList(List<User> users, User currentUser)
         {
@@ -59,4 +58,5 @@ namespace Spotivy
 
 
     }
+
 }
