@@ -37,6 +37,7 @@ namespace Spotivy
             Console.WriteLine("2: View playlists");
             Console.WriteLine("3: Find users");
             Console.WriteLine("4: Find artist");
+            Console.WriteLine("5: Log out");
             String userInput = Console.ReadLine();
             switch (userInput)
             {
@@ -47,7 +48,7 @@ namespace Spotivy
                     {
                         if (song.getTitle() == chosenSong)
                         {
-                            song.playSong();
+                            Console.WriteLine(song.playSong());
                             Console.WriteLine("\nWhat would you like to do?");
                             Console.WriteLine("1: Pause song");
                             Console.WriteLine("2: Skip song");
@@ -57,13 +58,13 @@ namespace Spotivy
                             switch (userInput)
                             {
                                 case "1":
-                                    song.pauseSong();
+                                    Console.WriteLine(song.pauseSong());
                                     break;
                                 case "2":
                                     // code block
                                     break;
                                 case "3":
-                                    // code block
+                                    Console.WriteLine(song.displayInfo());
                                     break;
                                 case "4":
                                     // code block
@@ -84,8 +85,11 @@ namespace Spotivy
                 case "4":
                     // code block
                     break;
+                case "5":
+                    // code block
+                    break;
                 default:
-                    Console.WriteLine("\nInvalid input. Please enter a number from 1-4.");
+                    Console.WriteLine("\nInvalid input. Please enter a number from 1-5.");
                     break;
             }
         }
