@@ -11,16 +11,16 @@ namespace Spotivy
             List<Songlist> songlistList1 = new List<Songlist>();
             List<Songlist> songlistList2 = new List<Songlist>();
             List<Songlist> songlistList3 = new List<Songlist>();
+            List<Songlist> albumList1 = new List<Songlist>();
             List<User> friendlist1 = new List<User>();
             List<User> friendlist2 = new List<User>();
             List<User> friendlist3 = new List<User>();
             User user1 = new User("Bo", songlistList1, friendlist1);
             User user2 = new User("Khalil", songlistList2, friendlist2);
             User user3 = new User("Robert", songlistList3, friendlist3);
-            Artist artist1 = new Artist();
-            Artist artist2 = new Artist();
-            Artist artist3 = new Artist();
-
+            List<Song> artistSingles1 = new List<Song>();
+            Artist artist1 = new Artist("Artiest1", albumList1, artistSingles1);
+            
             List<Artist> artistList1 = new List<Artist>();
             artistList1.Add(artist1);
             Song song1 = new Song("Titel1", artistList1, "Pop");
@@ -41,8 +41,14 @@ namespace Spotivy
             users.Add(user2);
             users.Add(user3);
             artists.Add(artist1);
-            artists.Add(artist2);
-            artists.Add(artist3);
+            /*artists.Add(artist2);
+            artists.Add(artist3);*/
+            artistSingles1.Add(song1);
+            artistSingles1.Add(song2);
+            artistSingles1.Add(song3);
+            artistSingles1.Add(song4);
+            artistSingles1.Add(song5);
+            artistSingles1.Add(song6);
             songs.Add(song1);
             songs.Add(song2);
             songs.Add(song3);
