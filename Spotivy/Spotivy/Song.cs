@@ -39,5 +39,10 @@ namespace Spotivy
         {
             Console.WriteLine("\nCurrently playing: " + getTitle() + " by " + getArtistNames());
         }
+
+        public void pauseSong()
+        {
+            Console.WriteLine("\nPaused: " + getTitle() + " by " + getArtistNames());
+        }
     }
 }

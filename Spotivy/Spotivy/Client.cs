@@ -48,6 +48,30 @@ namespace Spotivy
                         if (song.getTitle() == chosenSong)
                         {
                             song.playSong();
+                            Console.WriteLine("\nWhat would you like to do?");
+                            Console.WriteLine("1: Pause song");
+                            Console.WriteLine("2: Skip song");
+                            Console.WriteLine("3: Display song details");
+                            Console.WriteLine("4: Go back to the Main Menu");
+                            userInput = Console.ReadLine();
+                            switch (userInput)
+                            {
+                                case "1":
+                                    song.pauseSong();
+                                    break;
+                                case "2":
+                                    // code block
+                                    break;
+                                case "3":
+                                    // code block
+                                    break;
+                                case "4":
+                                    // code block
+                                    break;
+                                default:
+                                    Console.WriteLine("\nInvalid input. Please enter a number from 1-4.");
+                                    break;
+                            }
                         }
                     }
                     break;
