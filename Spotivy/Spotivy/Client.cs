@@ -55,6 +55,8 @@ namespace Spotivy
                     // code block
                     break;
                 case "3":
+
+                    mainUser.userList(users, mainUser);
                     // code block
                     break;
                 case "4":
