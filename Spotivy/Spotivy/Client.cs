@@ -88,6 +88,7 @@ namespace Spotivy
                         Console.WriteLine("What would you like to do?");
                         Console.WriteLine("1: Select a playlist");
                         Console.WriteLine("2: Create a new playlist");
+                        Console.WriteLine("3: Go back to the Main Menu");
                         userInput = Console.ReadLine();
                         switch (userInput)
                         {
@@ -128,17 +129,18 @@ namespace Spotivy
                             case "2":
                                 // code block
                                 break;
+                            case "3":
+                                // code block
+                                break;
                             default:
-                                Console.WriteLine("\nInvalid input. Please enter a number from 1-4.");
+                                Console.WriteLine("\nInvalid input. Please enter a number from 1-3.");
                                 break;
                         }
                         break;
 
-                    break;
+                //user menu   
                 case "3":
-
                     mainUser.userList(users, mainUser);
-                    // code block
                     break;
                 case "4":
                     // code block
