@@ -41,6 +41,7 @@ namespace Spotivy
             String userInput = Console.ReadLine();
             switch (userInput)
             {
+                //song menu
                 case "1":
                     Console.WriteLine("\nChoose a song to play.");
                     String chosenSong = Console.ReadLine();
@@ -76,8 +77,9 @@ namespace Spotivy
                         }
                     }
                     break;
+                    //playlist menu
                 case "2":
-                    // code block
+                    Console.WriteLine(mainUser.getSonglistListToString());
                     break;
                 case "3":
                     // code block
