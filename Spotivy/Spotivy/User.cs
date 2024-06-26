@@ -15,10 +15,48 @@ namespace Spotivy
         public User(string name, List<Songlist> songlistList, List<User> friendlist) : base(name, songlistList)
         {
             this.friendlist = friendlist;
+
+
+
+
+
+
         }
+        public void userList(List<User> users, User currentUser)
+        {
+
+
+
+
+
+            foreach (User user in users)
+            {
+
             
+                if (user  != currentUser)
+                {
+
+                    Console.WriteLine(user.getName());
+
+                }
+
+
+
+
+
+            }
+
+
+            
+
+
+
+
+
+
+        }
+
+
     }
 
-
-    
 }
