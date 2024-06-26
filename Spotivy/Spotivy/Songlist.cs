@@ -11,6 +11,7 @@ namespace Spotivy
         String title;
         List<Song> songs;
         List<Person> personList;
+        String songTitlesArtists;
 
         public Songlist(String title, List<Song> songs)
         {
@@ -21,5 +22,15 @@ namespace Spotivy
         public String getTitle() { return title; }
         public List<Song> getSonglist() {  return songs; }
         public List<Person> getPersonList() {  return personList; }
+
+        public String getSonglistToString()
+        {
+             songTitlesArtists = string.Empty;
+             foreach (Song song in getSonglist())
+             {
+                 songTitlesArtists += song.getTitle() + " by " + song.getArtistNames() + "\n";
+             }
+             return songTitlesArtists;
+        }
     }
 }

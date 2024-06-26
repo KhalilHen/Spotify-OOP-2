@@ -34,19 +34,27 @@ namespace Spotivy
             Songlist songlist1 = new Songlist("Playlist 1", playlist1);
             Songlist songlist2 = new Songlist("Playlist 2", playlist2);
             
-            List<User> users = new List<User>();
-            List<Artist> artists = new List<Artist>();
-            List<Song> songs = new List<Song>();
-            List<Songlist> songlists = new List<Songlist>();
+            List<User> allUsers = new List<User>();
+            List<Artist> allArtists = new List<Artist>();
+            List<Song> allSongs = new List<Song>();
+            List<Songlist> allSonglists = new List<Songlist>();
 
+
+            // add songs to playlist
+            playlist1.Add(song1);
+            playlist1.Add(song2);
+            playlist1.Add(song3);
+            playlist2.Add(song4);
+            playlist2.Add(song5);
+            playlist2.Add(song6);
             // add playlists to list of playlists per user
             playlistList1.Add(songlist1);
             playlistList1.Add(songlist2);
 
-            users.Add(user1);
-            users.Add(user2);
-            users.Add(user3);
-            artists.Add(artist1);
+            allUsers.Add(user1);
+            allUsers.Add(user2);
+            allUsers.Add(user3);
+            allArtists.Add(artist1);
             /*artists.Add(artist2);
             artists.Add(artist3);*/
             artistSingles1.Add(song1);
@@ -55,16 +63,16 @@ namespace Spotivy
             artistSingles1.Add(song4);
             artistSingles1.Add(song5);
             artistSingles1.Add(song6);
-            songs.Add(song1);
-            songs.Add(song2);
-            songs.Add(song3);
-            songs.Add(song4);
-            songs.Add(song5);
-            songs.Add(song6);
-            songlists.Add(songlist1);
-            songlists.Add(songlist2);
+            allSongs.Add(song1);
+            allSongs.Add(song2);
+            allSongs.Add(song3);
+            allSongs.Add(song4);
+            allSongs.Add(song5);
+            allSongs.Add(song6);
+            allSonglists.Add(songlist1);
+            allSonglists.Add(songlist2);
 
-            Client client = new Client(users, artists, songs, songlists);
+            Client client = new Client(allUsers, allArtists, allSongs, allSonglists);
 
             client.client();
             

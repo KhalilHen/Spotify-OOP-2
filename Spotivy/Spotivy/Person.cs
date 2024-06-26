@@ -37,11 +37,6 @@ namespace Spotivy
             }
             return songlistTitles;
         }
-
-        public String viewSonglistList()
-        {
-            return "";
-        }
     }
 
 }
