@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Spotivy
 {
-    public class Artist : Person
+    public class Artist
     {
+        String name;
+        List<Songlist> albums;
         List<Song> singles;
 
-        public Artist(string name, List<Songlist> songlistList, List<Song> singles) : base(name, songlistList)
+        public Artist(String name, List<Songlist> albums, List<Song> singles)
         {
-            this.singles = singles;
+            this.name = name;
+            this.albums = albums;
+            this.singles = singles;     
         }
+
+        public String getName() { return name; }
+        public List<Song> getSingles() { return singles; }
+        public List <Songlist> getAlbums() {  return albums; }
     }
 }

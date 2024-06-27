@@ -11,29 +11,26 @@ namespace Spotivy
     {
         String title;
         List<Song> songs;
-        List<Person> personList;
-        String songTitlesArtists;
         private int currentSongIndex;
 
         public Songlist(String title, List<Song> songs)
         {
             this.title = title;
             this.songs = songs;
-            this.currentSongIndex = 0;
+            currentSongIndex = 0;
         }
 
         public String getTitle() { return title; }
-        public List<Song> getSonglist() {  return songs; }
-        public List<Person> getPersonList() {  return personList; }
+        public List<Song> getSongs() {  return songs; }
 
         public String getSonglistToString()
         {
-             songTitlesArtists = string.Empty;
-             foreach (Song song in getSonglist())
+             String songDetails = string.Empty;
+             foreach (Song song in getSongs())
              {
-                 songTitlesArtists += song.getTitle() + " by " + song.getArtistNames() + "\n";
+                songDetails += song.getTitle() + " by " + song.getArtistNames() + "\n";
              }
-             return songTitlesArtists;
+             return songDetails;
         }
 
         public String playSonglist()
