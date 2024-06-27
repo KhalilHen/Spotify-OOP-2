@@ -180,12 +180,20 @@ namespace Spotivy
                                                                
                                         switch (subCommand)
                                         {
+                                           
                                             case "view":
-                                                foreach (Songlist songlist in mainUser.getSonglistList())
+                                                if (playlistName == "all")
                                                 {
-                                                    if (songlist.getTitle() == playlistName)
+                                                     Console.WriteLine(mainUser.getSonglistListToString());
+                                                }
+                                                else 
+                                                { 
+                                                    foreach (Songlist songlist in mainUser.getSonglistList())
                                                     {
-                                                        Console.WriteLine(songlist.getSonglistToString());
+                                                        if (songlist.getTitle() == playlistName)
+                                                        {
+                                                            Console.WriteLine(songlist.getSonglistToString());
+                                                        }
                                                     }
                                                 }
                                                 break;
@@ -203,12 +211,12 @@ namespace Spotivy
                                                 }
                                                 break;
                                             case "create":
-                                                mainUser.createSonglist(playlistName);
+                                                mainUser.createPlaylist(playlistName);
                                                 Console.WriteLine("Playlist created");
                                                 break;
                                             case "remove":
-                                                /*TO DO */
-                                                Console.WriteLine("command not yet added");
+                                                mainUser.removePlaylist(playlistName);
+                                                Console.WriteLine("Playlist removed");
                                                 break;
                                             default:
                                                 Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");

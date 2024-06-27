@@ -35,14 +35,7 @@ namespace Spotivy
                 songlistTitles += songlist.getTitle() + "\n";
             }
             return songlistTitles;
-        }
-
-        public void createSonglist(string playlistName)
-        {
-            List<Song> songs = new List<Song>();
-            Songlist songlist = new Songlist(playlistName, songs);
-            songlistList.Add(songlist);
-        }
+        }      
     }
 
 }

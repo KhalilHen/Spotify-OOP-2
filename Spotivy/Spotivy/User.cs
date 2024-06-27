@@ -26,5 +26,26 @@ namespace Spotivy
                 }
             }
         }
+        public void createPlaylist(string playlistName)
+        {
+            List<Song> songs = new List<Song>();
+            Songlist songlist = new Songlist(playlistName, songs);
+            getSonglistList().Add(songlist);
+        }
+
+        public void removePlaylist(string playlistName)
+        {
+            Songlist toRemove = null;
+            foreach (Songlist songlist in getSonglistList())
+            {
+                if (songlist.getTitle() == playlistName)
+                {
+                    toRemove = songlist;                 
+                }
+            }
+            if (toRemove != null) {
+            getSonglistList().Remove(toRemove);
+            }
+        }
     }
 }
