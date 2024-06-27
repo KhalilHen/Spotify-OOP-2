@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Spotivy
@@ -37,17 +38,17 @@ namespace Spotivy
 
         public String playSong()
         {
-            return "\nCurrently playing: " + getTitle() + " by " + getArtistNames();
+            return "Currently playing: " + getTitle() + " by " + getArtistNames() + "\n";
         }
 
         public String pauseSong()
         {
-            return "\nPaused: " + getTitle() + " by " + getArtistNames();
+            return "Paused: " + getTitle() + " by " + getArtistNames() + "\n";
         }
 
         public String displayInfo()
         {
-            return "\nTitle: " + getTitle() + "\nArtists: " + getArtistNames() + "\nGenre: " + getGenre();
+            return "Title: " + getTitle() + "\nArtists: " + getArtistNames() + "\nGenre: " + getGenre() + "\n";
         }
 
         
