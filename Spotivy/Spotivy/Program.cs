@@ -35,8 +35,8 @@ namespace Spotivy
             Song song4 = new Song("Titel4", artistList1, "Pop");
             Song song5 = new Song("Titel5", artistList1, "Rock");
             Song song6 = new Song("Titel6", artistList1, "Pop");
-            PlayList playlist1 = new PlayList("Playlist1", playlistSongs1);
-            PlayList playlist2 = new PlayList("Playlist2", playlistSongs2);
+            Playlist playlist1 = new Playlist("Playlist1", playlistSongs1);
+            Playlist playlist2 = new Playlist("Playlist2", playlistSongs2);
                       
             List<User> allUsers = new List<User>();
             List<Artist> allArtists = new List<Artist>();
