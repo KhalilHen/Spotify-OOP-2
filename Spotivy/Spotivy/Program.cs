@@ -74,7 +74,7 @@ namespace Spotivy
 
             Client client = new Client(allUsers, allArtists, allSongs, allSonglists);
 
-            client.client();
+            client.client1();
             
 
         }
