@@ -134,7 +134,7 @@ namespace Spotivy
                                     {
                                         if (songlist.getTitle() == entityName)
                                         {
-                                            Console.WriteLine(songlist.displayInfo());
+                                   /*         Console.WriteLine(songlist.displayInfo());*/
                                             found = true;
                                         }
                                     }
@@ -144,7 +144,7 @@ namespace Spotivy
                                     {
                                         if (user.getName() == entityName)
                                         {
-                                            Console.WriteLine(user.displayInfo());
+                                        /*    Console.WriteLine(user.displayInfo());*/
                                             found = true;
                                         }
                                     }
@@ -155,7 +155,7 @@ namespace Spotivy
                                     {
                                         if (artist.getName() == entityName)
                                         {
-                                            Console.WriteLine(artist.displayInfo());
+                                            /*Console.WriteLine(artist.displayInfo());*/
                                             found = true;
                                         }
                                     }
@@ -193,7 +193,7 @@ namespace Spotivy
                                         Console.WriteLine("command not yet added");
                                         break;
                                     default:
-                                        Console.WriteLine("Unknown playlist subcommand. Available subcommands: create");
+                                        Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
                                         break;
                                 }
                             }
@@ -203,7 +203,7 @@ namespace Spotivy
                             }
                             break;
                         case "help":
-                            Console.WriteLine("Available commands: play, list, help, exit");
+                            Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
                             break;
                         default:
                             Console.WriteLine("Unknown command. Type 'help' for a list of commands.");
