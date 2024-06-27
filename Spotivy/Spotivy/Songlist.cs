@@ -23,7 +23,7 @@ namespace Spotivy
         public String getTitle() { return title; }
         public List<Song> getSongs() {  return songs; }
 
-        public String getSonglistToString()
+        public String getSongsToString()
         {
              String songDetails = string.Empty;
              foreach (Song song in getSongs())
@@ -35,7 +35,6 @@ namespace Spotivy
 
         public String playSonglist()
         {
-
             if (currentSongIndex < songs.Count)
             {
                 Song currentSong = songs[currentSongIndex];
