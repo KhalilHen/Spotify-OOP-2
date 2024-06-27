@@ -27,7 +27,7 @@ namespace Spotivy
             this.songlists = songlists;
         }
 
-        public void client1()
+        public void client()
         {
             logIn();
             while (isLoggedIn == true)
@@ -134,7 +134,7 @@ namespace Spotivy
                                     {
                                         if (songlist.getTitle() == entityName)
                                         {
-                                   /*         Console.WriteLine(songlist.displayInfo());*/
+                                        /*    TO DO Console.WriteLine(songlist.displayInfo());*/
                                             found = true;
                                         }
                                     }
@@ -144,7 +144,7 @@ namespace Spotivy
                                     {
                                         if (user.getName() == entityName)
                                         {
-                                        /*    Console.WriteLine(user.displayInfo());*/
+                                        /*    TO DO Console.WriteLine(user.displayInfo());*/
                                             found = true;
                                         }
                                     }
@@ -155,7 +155,7 @@ namespace Spotivy
                                     {
                                         if (artist.getName() == entityName)
                                         {
-                                            /*Console.WriteLine(artist.displayInfo());*/
+                                        /*    TO DO Console.WriteLine(artist.displayInfo());*/
                                             found = true;
                                         }
                                     }
@@ -178,24 +178,41 @@ namespace Spotivy
                                 string subCommand = commandParts[1].ToLower();
                                 string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
 
-                                switch (subCommand)
+                                foreach (Songlist songlist in mainUser.getSonglistList())
                                 {
-                                    case "view":
-                                        Console.WriteLine("command not yet added");
-                                        break;
-                                    case "play":
-                                        Console.WriteLine("command not yet added");
-                                        break;
-                                    case "create":
-                                        Console.WriteLine("command not yet added");
-                                        break;
-                                    case "remove":
-                                        Console.WriteLine("command not yet added");
-                                        break;
-                                    default:
-                                        Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
-                                        break;
+                                    if (songlist.getTitle() == playlistName)
+                                    {
+                                        switch (subCommand)
+                                        {
+                                            case "view":
+                                                /*TO DO */
+                                                Console.WriteLine(songlist.getSonglistToString());
+                                                break;
+                                            case "play":
+                                                /*TO DO */
+                                                foreach (Song song in songlist.getSonglist())
+                                                {
+                                                    Console.WriteLine(songlist.playSonglist());
+                                                    System.Threading.Thread.Sleep(5000);
+                                                }
+                                                Console.WriteLine("command not yet added");
+                                                break;
+                                            case "create":
+                                                /*TO DO */
+                                                Console.WriteLine("command not yet added");
+                                                break;
+                                            case "remove":
+                                                /*TO DO */
+                                                Console.WriteLine("command not yet added");
+                                                break;
+                                            default:
+                                                Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
+                                                break;
+                                        }
+                                    }
                                 }
+
+                                
                             }
                             else
                             {
@@ -212,140 +229,7 @@ namespace Spotivy
                 }
             }
         }
-        public void client()
-        {
-            logIn();
-            if (isLoggedIn == true)
-            {
-
-                Console.WriteLine("\nWhat would you like to do?");
-                Console.WriteLine("1: Play song");
-                Console.WriteLine("2: View playlists");
-                Console.WriteLine("3: Find users");
-                Console.WriteLine("4: Find artists");
-                Console.WriteLine("5: Log out");
-                String userInput = Console.ReadLine();
-                switch (userInput)
-                {
-                    //song menu
-                    case "1":
-                        Console.WriteLine("\nChoose a song to play.");
-                        Console.WriteLine(getAllSongs());
-                        String chosenSong = Console.ReadLine();
-                        foreach (Song song in songs)
-                        {
-                            if (song.getTitle() == chosenSong)
-                            {
-                                Console.WriteLine(song.playSong());
-                                Console.WriteLine("\nWhat would you like to do?");
-                                Console.WriteLine("1: Pause song");
-                                Console.WriteLine("2: Skip song");
-                                Console.WriteLine("3: Display song details");
-                                Console.WriteLine("4: Add to playlist");
-                                Console.WriteLine("5: Go back to the Main Menu");
-                                userInput = Console.ReadLine();
-                                switch (userInput)
-                                {
-                                    case "1":
-                                        Console.WriteLine(song.pauseSong());
-                                        break;
-                                    case "2":
-                                        // code block
-                                        break;
-                                    case "3":
-                                        Console.WriteLine(song.displayInfo());
-                                        break;
-                                    case "4":
-                                        // code block
-                                        break;
-                                    case "5":
-                                        // code block
-                                        break;
-                                    default:
-                                        Console.WriteLine("\nInvalid input. Please enter a number from 1-4.");
-                                        break;
-                                }
-                            }
-                        }
-                        break;
-
-                    //playlist menu
-                    case "2":
-                        Console.WriteLine("\n" + mainUser.getSonglistListToString());
-                        Console.WriteLine("What would you like to do?");
-                        Console.WriteLine("1: Select a playlist");
-                        Console.WriteLine("2: Create a new playlist");
-                        Console.WriteLine("3: Go back to the Main Menu");
-                        userInput = Console.ReadLine();
-                        switch (userInput)
-                        {
-                            case "1":
-                                Console.WriteLine("\nChoose a playlist.");
-                                String chosenPlaylist = Console.ReadLine();
-                                foreach (Songlist songlist in mainUser.getSonglistList())
-                                {
-                                    if (songlist.getTitle() == chosenPlaylist)
-                                    {
-                                        Console.WriteLine("\nWhat would you like to do?");
-                                        Console.WriteLine("1: Play playlist");
-                                        Console.WriteLine("2: View playlist");
-                                        Console.WriteLine("3: Remove playlist");
-                                        Console.WriteLine("4: Go back to the Main Menu");
-                                        userInput = Console.ReadLine();
-                                        switch (userInput)
-                                        {
-                                            case "1":
-                                                foreach (Song song in songlist.getSonglist())
-                                                {
-                                                    Console.WriteLine(songlist.playSonglist());
-                                                    System.Threading.Thread.Sleep(5000);
-                                                } 
-                                                
-                                                break;
-                                            case "2":
-                                                Console.WriteLine("\n" + songlist.getSonglistToString()); 
-                                                break;
-                                            case "3":
-                                              
-                                                break;
-                                            case "4":
-                                                // code block
-                                                break;
-                                            default:
-                                                Console.WriteLine("\nInvalid input. Please enter a number from 1-4.");
-                                                break;
-                                        }
-                                    }
-                                }
-                                break;
-                            case "2":
-                                // code block
-                                break;
-                            case "3":
-                                // code block
-                                break;
-                            default:
-                                Console.WriteLine("\nInvalid input. Please enter a number from 1-3.");
-                                break;
-                        }
-                        break;
-
-                //user menu   
-                case "3":
-                    mainUser.userList(users, mainUser);
-                    break;
-                case "4":
-                    // code block
-                    break;
-                case "5":
-                    // code block
-                    break;
-                default:
-                    Console.WriteLine("\nInvalid input. Please enter a number from 1-5.");
-                    break;
-                }
-            }
-        }
+       
         public Boolean logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");
