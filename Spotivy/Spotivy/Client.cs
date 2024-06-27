@@ -228,7 +228,7 @@ namespace Spotivy
                             {
                                 Console.WriteLine("Invalid playlist command. Usage: playlist <subcommand> <name>");
                             }
-                            break;
+                            break;                        
                         case "help":
                             Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
                             break;
@@ -270,6 +270,5 @@ namespace Spotivy
             }
             return songInfo;
         }
-
     }
 }
