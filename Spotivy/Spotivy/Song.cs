@@ -77,7 +77,7 @@ namespace Spotivy
 
         public String displayInfo()
         {
-            return "Title: " + title + "\nArtists: " + getArtistNames() + "\nGenre: " + genre + "\n";
+            return "Type: Song\n\nTitle: " + title + "\nArtists: " + getArtistNames() + "\nGenre: " + genre + "\n";
         }
 
         

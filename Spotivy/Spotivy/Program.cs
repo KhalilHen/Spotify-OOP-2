@@ -122,67 +122,12 @@ namespace Spotivy
                                 Console.WriteLine(client.resume(commandParts));
                                 break;
 
-                            /*case "info":
-                                if (commandParts.Length >= 2)
-                                {
-
-                                    String entityName = string.Join(" ", commandParts, 1, commandParts.Length - 1);
-                                    Boolean found = false;
-
-                                    foreach (Song song in songs)
-                                    {
-                                        if (song.getTitle() == entityName)
-                                        {
-                                            Console.WriteLine(song.displayInfo());
-                                            found = true;
-                                        }
-                                    }
-                                    if (!found)
-                                    {
-                                        foreach (Songlist songlist in songlists)
-                                        {
-                                            if (songlist.getTitle() == entityName)
-                                            {
-                                                *//*    TO DO Console.WriteLine(songlist.displayInfo());*//*
-                                                found = true;
-                                            }
-                                        }
-                                    }
-                                    if (!found)
-                                    {
-                                        foreach (User user in users)
-                                        {
-                                            if (user.getName() == entityName)
-                                            {
-                                                *//*    TO DO Console.WriteLine(user.displayInfo());*//*
-                                                found = true;
-                                            }
-                                        }
-                                    }
-                                    if (!found)
-                                    {
-                                        foreach (Artist artist in artists)
-                                        {
-                                            if (artist.getName() == entityName)
-                                            {
-                                                *//*    TO DO Console.WriteLine(artist.displayInfo());*//*
-                                                found = true;
-                                            }
-                                        }
-                                    }
-                                    if (!found)
-                                    {
-                                        Console.WriteLine("This entity does not exist\n");
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid info command. Usage: info <song>/<album>/<playlist>/<user>/<artist>\n");
-                                }
+                            case "info":
+                                Console.WriteLine(client.info(commandParts));
                                 break;
 
 
-                            case "playlist":
+                           /*case "playlist":
                                 if (commandParts.Length >= 3)
                                 {
                                     string subCommand = commandParts[1].ToLower();

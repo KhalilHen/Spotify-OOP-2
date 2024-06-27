@@ -82,6 +82,54 @@ namespace Spotivy
 
         }
 
+        public String info(String[] commandParts)
+        {
+            if (commandParts.Length >= 2)
+            {
+                String entityName = string.Join(" ", commandParts, 1, commandParts.Length - 1);
+
+                foreach (Song song in songs)
+                {
+                    if (song.getTitle() == entityName)
+                    {
+                        return song.displayInfo();
+                                            }
+                }
+                foreach (Songlist songlist in songlists)
+                {
+                    if (songlist.getTitle() == entityName)
+                    {
+                       /* TO DO 
+                        * Console.WriteLine(songlist.displayInfo());*/
+                           
+                    }
+                }
+                foreach (User user in users)
+                {
+                    if (user.getName() == entityName)
+                    {
+                        /*TO DO
+                         * Console.WriteLine(user.displayInfo());*/
+                           
+                    }
+                }
+                foreach (Artist artist in artists)
+                {
+                    if (artist.getName() == entityName)
+                    {
+                        /*TO DO 
+                         * Console.WriteLine(artist.displayInfo());*/
+                            
+                    }
+                }           
+                return "This entity does not exist\n";                
+            }
+            else
+            {
+                return "Invalid info command. Usage: info <song>/<album>/<playlist>/<user>/<artist>\n";
+            }
+        }
+
         public Boolean logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");
