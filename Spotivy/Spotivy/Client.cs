@@ -177,29 +177,34 @@ namespace Spotivy
                             {
                                 string subCommand = commandParts[1].ToLower();
                                 string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
-
-                                foreach (Songlist songlist in mainUser.getSonglistList())
-                                {
-                                    if (songlist.getTitle() == playlistName)
-                                    {
+                                                               
                                         switch (subCommand)
                                         {
                                             case "view":
-                                                /*TO DO */
-                                                Console.WriteLine(songlist.getSonglistToString());
+                                                foreach (Songlist songlist in mainUser.getSonglistList())
+                                                {
+                                                    if (songlist.getTitle() == playlistName)
+                                                    {
+                                                        Console.WriteLine(songlist.getSonglistToString());
+                                                    }
+                                                }
                                                 break;
                                             case "play":
-                                                /*TO DO */
-                                                foreach (Song song in songlist.getSonglist())
+                                                foreach (Songlist songlist in mainUser.getSonglistList())
                                                 {
-                                                    Console.WriteLine(songlist.playSonglist());
-                                                    System.Threading.Thread.Sleep(5000);
+                                                    if (songlist.getTitle() == playlistName)
+                                                    {
+                                                        foreach (Song song in songlist.getSonglist())
+                                                        {
+                                                            Console.WriteLine(songlist.playSonglist());
+                                                            System.Threading.Thread.Sleep(5000);
+                                                        }
+                                                    }
                                                 }
-                                                Console.WriteLine("command not yet added");
                                                 break;
                                             case "create":
-                                                /*TO DO */
-                                                Console.WriteLine("command not yet added");
+                                                mainUser.createSonglist(playlistName);
+                                                Console.WriteLine("Playlist created");
                                                 break;
                                             case "remove":
                                                 /*TO DO */
@@ -208,12 +213,9 @@ namespace Spotivy
                                             default:
                                                 Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
                                                 break;
+                                            }
                                         }
-                                    }
-                                }
-
-                                
-                            }
+                                                            
                             else
                             {
                                 Console.WriteLine("Invalid playlist command. Usage: playlist <subcommand> <name>");

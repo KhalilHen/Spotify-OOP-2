@@ -10,7 +10,6 @@ namespace Spotivy
     {
         String name;
         List<Songlist> songlistList;
-        String songlistTitles;
 
         public Person(String name, List<Songlist> songlistList)
         {
@@ -30,12 +29,19 @@ namespace Spotivy
 
         public String getSonglistListToString()
         {
-            songlistTitles = string.Empty;
+            String songlistTitles = string.Empty;
             foreach (Songlist songlist in getSonglistList())
             {
                 songlistTitles += songlist.getTitle() + "\n";
             }
             return songlistTitles;
+        }
+
+        public void createSonglist(string playlistName)
+        {
+            List<Song> songs = new List<Song>();
+            Songlist songlist = new Songlist(playlistName, songs);
+            songlistList.Add(songlist);
         }
     }
 

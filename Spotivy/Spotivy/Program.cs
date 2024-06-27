@@ -8,6 +8,8 @@ namespace Spotivy
     {
         static void Main(string[] args)
         {
+          
+
             List<Songlist> playlistList1 = new List<Songlist>();
             List<Songlist> playlistList2 = new List<Songlist>();
             List<Songlist> playlistList3 = new List<Songlist>();
@@ -25,6 +27,7 @@ namespace Spotivy
             
             List<Artist> artistList1 = new List<Artist>();
             artistList1.Add(artist1);
+
             Song song1 = new Song("Titel1", artistList1, "Pop");
             Song song2 = new Song("Titel2", artistList1, "Pop");
             Song song3 = new Song("Titel3", artistList1, "Rock");
@@ -55,8 +58,6 @@ namespace Spotivy
             allUsers.Add(user2);
             allUsers.Add(user3);
             allArtists.Add(artist1);
-            /*artists.Add(artist2);
-            artists.Add(artist3);*/
             artistSingles1.Add(song1);
             artistSingles1.Add(song2);
             artistSingles1.Add(song3);
