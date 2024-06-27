@@ -13,7 +13,8 @@ namespace Spotivy
         String title;
         List<Artist> artists;
         String genre;
-        String songArtists;
+        Boolean isPlaying;
+        Boolean paused;
 
         public Song(String title, List<Artist> artists, String genre)
         {
@@ -28,7 +29,7 @@ namespace Spotivy
 
         public String getArtistNames()
         {
-            songArtists = string.Empty;
+            String songArtists = string.Empty;
             foreach (Artist artist in getArtists())
             {
                 songArtists += artist.getName() + " ";
@@ -38,17 +39,45 @@ namespace Spotivy
 
         public String playSong()
         {
-            return "Currently playing: " + getTitle() + " by " + getArtistNames() + "\n";
+            if (!isPlaying)
+            {
+                isPlaying = true;
+                return "Currently playing: " + title + " by " + getArtistNames() + "\n";
+            }
+            return title + " is already playing\n";
         }
 
         public String pauseSong()
         {
-            return "Paused: " + getTitle() + " by " + getArtistNames() + "\n";
+            if (isPlaying)
+            {
+                isPlaying = false;
+                paused = true;
+                return "Paused: " + title + " by " + getArtistNames() + "\n";
+            }
+            return "There is no song playing\n";            
+        }
+
+        public String resumeSong()
+        {
+            if (paused)
+            {
+                paused = false;
+                return playSong();
+            }
+            else if (paused == false && isPlaying)
+            {
+                return "The song is still playing\n";
+            }
+            else
+            {
+                return "There is no song playing\n";
+            }
         }
 
         public String displayInfo()
         {
-            return "Title: " + getTitle() + "\nArtists: " + getArtistNames() + "\nGenre: " + getGenre() + "\n";
+            return "Title: " + title + "\nArtists: " + getArtistNames() + "\nGenre: " + genre + "\n";
         }
 
         

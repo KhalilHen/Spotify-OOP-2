@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Spotivy
 {
@@ -10,31 +11,48 @@ namespace Spotivy
         {
           
 
-            List<Songlist> playlistList1 = new List<Songlist>();
-            List<Songlist> playlistList2 = new List<Songlist>();
-            List<Songlist> playlistList3 = new List<Songlist>();
-            List<Songlist> albumList1 = new List<Songlist>();
+            List<Playlist> playlists1 = new List<Playlist>();
+            List<Playlist> playlists2 = new List<Playlist>();
+            List<Playlist> playlists3 = new List<Playlist>();
             List<User> friendlist1 = new List<User>();
             List<User> friendlist2 = new List<User>();
             List<User> friendlist3 = new List<User>();
-            User user1 = new User("Bo", playlistList1, friendlist1);
-            User user2 = new User("Khalil", playlistList2, friendlist2);
-            User user3 = new User("Robert", playlistList3, friendlist3);
-            List<Song> artistSingles1 = new List<Song>();
+            User user1 = new User("Bo", friendlist1, playlists1);
+            User user2 = new User("Khalil", friendlist2, playlists2);
+            User user3 = new User("Robert", friendlist3, playlists3);
+
+            /*Artist 1*/
+            List<Songlist> albums1 = new List<Songlist>();
+            List<Song> singles1 = new List<Song>();
+            Artist artist1 = new Artist("Artiest1", albums1, singles1);
+            List<Artist> featuredArtists = new List<Artist>();
+            featuredArtists.Add(artist1);
+            Song song1 = new Song("Titel1", featuredArtists, "Pop");
+            Song song2 = new Song("Titel2", featuredArtists, "Pop");
+            Song song3 = new Song("Titel3", featuredArtists, "Rock");
+            Song song4 = new Song("Titel4", featuredArtists, "Pop");
+            Song song5 = new Song("Titel5", featuredArtists, "Rock");
+            Song song6 = new Song("Titel6", featuredArtists, "Pop");
+            singles1.Add(song1);
+            singles1.Add(song2);
+            singles1.Add(song3);
+            singles1.Add(song4);
+            singles1.Add(song5);
+            singles1.Add(song6);
+
+
+
+
+
+
             List<Song> playlistSongs1 = new List<Song>();
             List<Song> playlistSongs2 = new List<Song>();
-            Artist artist1 = new Artist("Artiest1", albumList1, artistSingles1);
+
+           
             
-            List<Artist> artistList1 = new List<Artist>();
-            artistList1.Add(artist1);
             
 
-            Song song1 = new Song("Titel1", artistList1, "Pop");
-            Song song2 = new Song("Titel2", artistList1, "Pop");
-            Song song3 = new Song("Titel3", artistList1, "Rock");
-            Song song4 = new Song("Titel4", artistList1, "Pop");
-            Song song5 = new Song("Titel5", artistList1, "Rock");
-            Song song6 = new Song("Titel6", artistList1, "Pop");
+          
             Playlist playlist1 = new Playlist("Playlist1", playlistSongs1);
             Playlist playlist2 = new Playlist("Playlist2", playlistSongs2);
                       
@@ -52,19 +70,14 @@ namespace Spotivy
             playlistSongs2.Add(song5);
             playlistSongs2.Add(song6);
             // add playlists to all playlists of a single user
-            playlistList1.Add(playlist1);
-            playlistList1.Add(playlist2);
+            playlists1.Add(playlist1);
+            playlists1.Add(playlist2);
 
             allUsers.Add(user1);
             allUsers.Add(user2);
             allUsers.Add(user3);
             allArtists.Add(artist1);
-            artistSingles1.Add(song1);
-            artistSingles1.Add(song2);
-            artistSingles1.Add(song3);
-            artistSingles1.Add(song4);
-            artistSingles1.Add(song5);
-            artistSingles1.Add(song6);
+            
             allSongs.Add(song1);
             allSongs.Add(song2);
             allSongs.Add(song3);
@@ -76,8 +89,169 @@ namespace Spotivy
 
             Client client = new Client(allUsers, allArtists, allSongs, allSonglists);
 
-            client.client();
             
+
+            run();
+
+            void run()
+            {
+                while (client.logIn() == true)
+                {
+                    Console.WriteLine("Logged in succesfully.\n");
+                    while (true)
+                    {
+                        Console.Write("> ");
+                        String input = Console.ReadLine();
+                        String[] commandParts = input.Split(' ');
+
+                        if (commandParts.Length == 0) continue;
+
+                        String command = commandParts[0].ToLower();
+
+                        switch (command)
+                        {
+                            case "play":
+                                Console.WriteLine(client.play(commandParts));
+                                break;
+
+                            case "pause":
+                                Console.WriteLine(client.pause(commandParts));
+                                break;
+
+                            case "resume":
+                                Console.WriteLine(client.resume(commandParts));
+                                break;
+
+                            /*case "info":
+                                if (commandParts.Length >= 2)
+                                {
+
+                                    String entityName = string.Join(" ", commandParts, 1, commandParts.Length - 1);
+                                    Boolean found = false;
+
+                                    foreach (Song song in songs)
+                                    {
+                                        if (song.getTitle() == entityName)
+                                        {
+                                            Console.WriteLine(song.displayInfo());
+                                            found = true;
+                                        }
+                                    }
+                                    if (!found)
+                                    {
+                                        foreach (Songlist songlist in songlists)
+                                        {
+                                            if (songlist.getTitle() == entityName)
+                                            {
+                                                *//*    TO DO Console.WriteLine(songlist.displayInfo());*//*
+                                                found = true;
+                                            }
+                                        }
+                                    }
+                                    if (!found)
+                                    {
+                                        foreach (User user in users)
+                                        {
+                                            if (user.getName() == entityName)
+                                            {
+                                                *//*    TO DO Console.WriteLine(user.displayInfo());*//*
+                                                found = true;
+                                            }
+                                        }
+                                    }
+                                    if (!found)
+                                    {
+                                        foreach (Artist artist in artists)
+                                        {
+                                            if (artist.getName() == entityName)
+                                            {
+                                                *//*    TO DO Console.WriteLine(artist.displayInfo());*//*
+                                                found = true;
+                                            }
+                                        }
+                                    }
+                                    if (!found)
+                                    {
+                                        Console.WriteLine("This entity does not exist\n");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid info command. Usage: info <song>/<album>/<playlist>/<user>/<artist>\n");
+                                }
+                                break;
+
+
+                            case "playlist":
+                                if (commandParts.Length >= 3)
+                                {
+                                    string subCommand = commandParts[1].ToLower();
+                                    string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
+
+                                    switch (subCommand)
+                                    {
+
+                                        case "view":
+                                            if (playlistName == "all")
+                                            {
+                                                Console.WriteLine(mainUser.getPlaylistsToString());
+                                            }
+                                            else
+                                            {
+                                                foreach (Playlist playlist in mainUser.getPlaylists())
+                                                {
+                                                    if (playlist.getTitle() == playlistName)
+                                                    {
+                                                        Console.WriteLine(playlist.getSongsToString());
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        case "play":
+                                            foreach (Playlist playlist in mainUser.getPlaylists())
+                                            {
+                                                if (playlist.getTitle() == playlistName)
+                                                {
+                                                    foreach (Song song in playlist.getSongs())
+                                                    {
+                                                        Console.WriteLine(playlist.playSonglist());
+                                                        System.Threading.Thread.Sleep(5000);
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        case "create":
+                                            mainUser.createPlaylist(playlistName);
+                                            Console.WriteLine("Playlist created");
+                                            break;
+                                        case "remove":
+                                            mainUser.removePlaylist(playlistName);
+                                            Console.WriteLine("Playlist removed");
+                                            break;
+                                        default:
+                                            Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
+                                            break;
+                                    }
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("Invalid playlist command. Usage: playlist <subcommand> <name>");
+                                }
+                                break;*/
+                            case "help":
+                                Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
+                                break;
+                            default:
+                                Console.WriteLine("Unknown command. Type 'help' for a list of commands.");
+                                break;
+                        }
+                    }
+                }
+            }
+            
+             
+
 
         }
     }
