@@ -11,13 +11,11 @@ namespace Spotivy
     {
         String title;
         List<Song> songs;
-        private int currentSongIndex;
 
         public Songlist(String title, List<Song> songs)
         {
             this.title = title;
             this.songs = songs;
-            currentSongIndex = 0;
         }
 
         public String getTitle() { return title; }
@@ -33,29 +31,24 @@ namespace Spotivy
              if (songDetails != null) { 
                 return songDetails;
              }
-             return "Playlist does not yet contain any songs";
+             return "There are no songs available";
         }
 
-       /* public String playSonglist()
+        internal String playSonglist()
         {
-            if (currentSongIndex < songs.Count)
+            String player = null;
+            foreach (Song song in getSongs())
             {
-                Song currentSong = songs[currentSongIndex];
-                currentSongIndex++;
-                return currentSong.playSong();
+                player += song.playSong() + "\n";
             }
-            else
+            if (player != null)
             {
-                currentSongIndex = 0;
-                return "No songs left. Starting from beginning.";
+                return player;
             }
-        }*/
+            return "There are no songs available";
+        }
 
+       
 
-        /* public String getSonglistInfo()
-         {
-
-         }*/
-        
     }
 }

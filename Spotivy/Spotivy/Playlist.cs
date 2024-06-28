@@ -11,7 +11,5 @@ namespace Spotivy
         public Playlist(String title, List<Song> songs) : base(title, songs)
         {
         }
-
-        }
-
+    }
 }

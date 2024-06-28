@@ -188,20 +188,12 @@ namespace Spotivy
 
         internal String playPlaylist(String playlistName)
         {
-            String player = null;
+            
             foreach (Playlist playlist in playlists)
             {
                 if (playlist.getTitle() == playlistName)
                 {
-                    foreach (Song song in playlist.getSongs())
-                    {
-                        player += song.playSong() + "\n";   
-                    }
-                    if (player != null)
-                    {
-                        return player;
-                    }
-                    return "This playlist does not have any songs to play";
+                    return playlist.playSonglist();
                 }
             }
             return "Playlist does not exist";
