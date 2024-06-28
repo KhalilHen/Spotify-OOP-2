@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace Spotivy
              return "There are no songs available";
         }
 
-        internal String playSonglist()
+        public String playSonglist()
         {
             String player = null;
             foreach (Song song in getSongs())
@@ -47,8 +48,29 @@ namespace Spotivy
             }
             return "There are no songs available";
         }
-
-       
-
+        
+        public String displayInfo()
+        {
+            HashSet<String> genres = new HashSet<String>();
+            HashSet<String> artists = new HashSet<String>();
+            String genresString = string.Empty;
+            String artistsString = string.Empty;
+            foreach (Song song in songs)
+            {                
+                genres.Add(song.getGenre());
+                foreach (Artist artist in song.getArtists()){
+                    artists.Add(artist.getName());                  
+                }
+            }
+            foreach (string genre in genres)
+            {
+                genresString += genre + " ";
+            }
+            foreach (string artist in artists)
+            {
+                artistsString += artist + " ";
+            }
+            return "Title: " + title + "\nGenres: " + genresString + "\nArtists: " + artistsString;
+        }        
     }
 }

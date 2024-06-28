@@ -15,17 +15,17 @@ namespace Spotivy
         List<User> users;
         List<Artist> artists;
         List<Song> songs;
-        List<Songlist> songlists;
+        List<Songlist> albums;
         List<Playlist> playlists;
         Song currentSong;
 
 
-        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists, List<Playlist> playlists)
+        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> albums, List<Playlist> playlists)
         {
             this.users = users;
             this.artists = artists;
             this.songs = songs;
-            this.songlists = songlists;
+            this.albums = albums;
             this.playlists = playlists;
         }
        
@@ -96,15 +96,20 @@ namespace Spotivy
                     if (song.getTitle() == entityName)
                     {
                         return song.displayInfo();
-                                            }
+                    }
                 }
-                foreach (Songlist songlist in songlists)
+                foreach (Songlist songlist in albums)
                 {
                     if (songlist.getTitle() == entityName)
                     {
-                       /* TO DO 
-                        * Console.WriteLine(songlist.displayInfo());*/
-                           
+                        return songlist.displayInfo();
+                    }
+                }
+                foreach (Playlist playlist in playlists)
+                {
+                    if (playlist.getTitle() == entityName)
+                    {
+                        return playlist.displayInfo();
                     }
                 }
                 foreach (User user in users)
@@ -131,6 +136,55 @@ namespace Spotivy
             {
                 return "Invalid info command. Usage: info <song>/<album>/<playlist>/<user>/<artist>\n";
             }
+        }
+
+        public String album(String[] commandParts)
+        {
+            if (commandParts.Length >= 3)
+            {
+                string subCommand = commandParts[1].ToLower();
+                string albumName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
+
+                switch (subCommand)
+                {
+
+                    case "view":
+                        return viewAlbum(albumName);
+                    case "play":
+                        return playAlbum(albumName);
+                    default:
+                        return "Invalid album subcommand. Available subcommands: view, play";
+                }
+            }
+            else
+            {
+                return "Invalid playlist command. Usage: album <subcommand> <name>";
+            }
+        }
+
+        internal String viewAlbum(String albumName)
+        {            
+                foreach (Songlist album in albums)
+                {
+                    if (album.getTitle() == albumName)
+                    {
+                        return album.getSongsToString();
+                    }
+                }            
+            return "Album does not exist";
+        }
+
+        internal String playAlbum(String albumName)
+        {
+
+            foreach (Songlist album in albums)
+            {
+                if (album.getTitle() == albumName)
+                {
+                    return album.playSonglist();
+                }
+            }
+            return "Album does not exist";
         }
 
         public String playlist(String[] commandParts)
@@ -199,7 +253,7 @@ namespace Spotivy
             return "Playlist does not exist";
         }
 
-        public String users(String[] commandParts)
+        public String userList(String[] commandParts)
         {
 
             return mainUser.userList(users, mainUser);
