@@ -129,9 +129,11 @@ namespace Spotivy
                             case "artists":
                                 Console.WriteLine("A list of all the existing artist(s)");
                                 Artist.artistList(allArtists);
+                                break;
 
-
-
+                            case "logout":
+                                client.logOut(); 
+                                break;
 
                                 break;
                             case "help":

@@ -280,6 +280,8 @@ namespace Spotivy
             return false;
         }
 
+        public void logOut() { Console.WriteLine("You have successfully logged out."); Console.WriteLine($"Logged out user: {mainUser.getName()}"); logIn(); }
+
         public String getAllSongsToString()
         {
             String songInfo = string.Empty;
