@@ -14,5 +14,19 @@ namespace Spotivy
         {
             this.singles = singles;
         }
+
+
+        public static  void artistList(List<Artist>  artists)
+            
+        {
+            foreach(Artist artist in artists)
+            {
+
+                Console.WriteLine(artist.getName());
+            }
+
+
+
+        }
     }
 }

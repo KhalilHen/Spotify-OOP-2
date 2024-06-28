@@ -221,6 +221,12 @@ namespace Spotivy
                                 Console.WriteLine("Invalid playlist command. Usage: playlist <subcommand> <name>");
                             }
                             break;
+
+
+                        case "artists":
+                            Console.WriteLine("A list of all the existing artist(s)");
+                            Artist.artistList(artists);
+                            break; 
                         case "help":
                             Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
                             break;
