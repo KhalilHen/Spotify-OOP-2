@@ -199,6 +199,12 @@ namespace Spotivy
             return "Playlist does not exist";
         }
 
+        public String users(String[] commandParts)
+        {
+
+            return mainUser.userList(users, mainUser);
+        }
+
         public Boolean logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");

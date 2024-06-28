@@ -116,25 +116,33 @@ namespace Spotivy
                             case "play":
                                 Console.WriteLine(client.play(commandParts));
                                 break;
-
                             case "pause":
                                 Console.WriteLine(client.pause(commandParts));
                                 break;
-
                             case "resume":
                                 Console.WriteLine(client.resume(commandParts));
                                 break;
-
                             case "info":
                                 Console.WriteLine(client.info(commandParts));
                                 break;
-
-
                             case "playlist":
                                 Console.WriteLine(client.playlist(commandParts));
                                 break;
+                            case "users":
+                                Console.WriteLine(client.users(commandParts));
+                                break;
                             case "help":
-                                Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
+                                Console.WriteLine("Available commands: play, pause, resume, info, playlist, help\n");
+                                Console.WriteLine(">play <title>: Plays a specific song");
+                                Console.WriteLine(">pause: Pauses the song that's currently playing");
+                                Console.WriteLine(">resume: Resumes the paused song");
+                                Console.WriteLine(">info <song>/<album>/<playlist>/<artist>/<user>: Display more information on a song, album, playlist, artist or user");
+                                Console.WriteLine(">playlist play <title>: Plays playlist that matches selected title");
+                                Console.WriteLine(">playlist view <title>/all: Views all songs in selected playlist, or shows all playlists belonging to that user");
+                                Console.WriteLine(">playlist create <title>: Creates a new playlist with the selected title");
+                                Console.WriteLine(">playlist remove <title>: Removes playlist that matches selected title");
+                                Console.WriteLine(">users: View all users on the application");
+                                Console.WriteLine(">help: List of commands");
                                 break;
                             default:
                                 Console.WriteLine("Unknown command. Type 'help' for a list of commands.");
@@ -142,11 +150,7 @@ namespace Spotivy
                         }
                     }
                 }
-            }
-            
-             
-
-
+            }        
         }
     }
 }
