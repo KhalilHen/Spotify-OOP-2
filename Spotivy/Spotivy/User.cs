@@ -25,15 +25,17 @@ namespace Spotivy
         public List<User> getFriends() {  return friendlist; }
         public List<Playlist> getPlaylists() { return playlists; }
 
-        public void userList(List<User> users, User currentUser)
+        public String userList(List<User> users, User currentUser)
         {
+            String userList = string.Empty;
             foreach (User user in users)
             {
                 if (user  != currentUser)
                 {
-                    Console.WriteLine(user.getName());
+                    userList += user.getName() + "\n";
                 }
             }
+            return userList;
         }
 
         public Playlist createPlaylist(string playlistName)
