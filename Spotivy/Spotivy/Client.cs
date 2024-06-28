@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Intrinsics.X86;
@@ -15,15 +16,17 @@ namespace Spotivy
         List<Artist> artists;
         List<Song> songs;
         List<Songlist> songlists;
+        List<Playlist> playlists;
         Song currentSong;
 
 
-        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists)
+        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists, List<Playlist> playlists)
         {
             this.users = users;
             this.artists = artists;
             this.songs = songs;
             this.songlists = songlists;
+            this.playlists = playlists;
         }
        
         public String play(String[] commandParts)
@@ -130,6 +133,80 @@ namespace Spotivy
             }
         }
 
+        public String playlist(String[] commandParts)
+        {
+            if (commandParts.Length >= 3)
+            {
+                string subCommand = commandParts[1].ToLower();
+                string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
+
+                switch (subCommand)
+                {
+
+                    case "view":
+                        return viewPlaylist(playlistName);
+                    case "play":
+                        return playPlaylist(playlistName);
+                    case "create":
+                        playlists.Add(mainUser.createPlaylist(playlistName));
+                        return "Playlist created";
+                    case "remove":
+                        if (mainUser.removePlaylist(playlistName) != null)
+                        {                                                   
+                        playlists.Remove(mainUser.removePlaylist(playlistName));
+                        return "Playlist removed";
+                        }
+                        return "Playlist does not exist";
+                    default:
+                        return "Invalid playlist subcommand. Available subcommands: view, play, create, remove";                        
+                }
+            }
+            else
+            {
+                return "Invalid playlist command. Usage: playlist <subcommand> <name>";
+            }
+        }
+
+        internal String viewPlaylist(String playlistName)
+        {
+            if (playlistName == "all")
+            {
+                return mainUser.getPlaylistsToString();
+            }
+            else
+            {
+                foreach (Playlist playlist in playlists)
+                {
+                    if (playlist.getTitle() == playlistName)
+                    {
+                        return playlist.getSongsToString();
+                    }
+                }
+            }
+            return "Playlist does not exist";
+        }
+
+        internal String playPlaylist(String playlistName)
+        {
+            String player = null;
+            foreach (Playlist playlist in playlists)
+            {
+                if (playlist.getTitle() == playlistName)
+                {
+                    foreach (Song song in playlist.getSongs())
+                    {
+                        player += song.playSong() + "\n";   
+                    }
+                    if (player != null)
+                    {
+                        return player;
+                    }
+                    return "This playlist does not have any songs to play";
+                }
+            }
+            return "Playlist does not exist";
+        }
+
         public Boolean logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");
@@ -151,7 +228,7 @@ namespace Spotivy
             return false;
         }
 
-        public String getAllSongs()
+        public String getAllSongsToString()
         {
             String songInfo = string.Empty;
             Console.WriteLine("");

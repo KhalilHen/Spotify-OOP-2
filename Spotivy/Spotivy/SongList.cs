@@ -25,15 +25,18 @@ namespace Spotivy
 
         public String getSongsToString()
         {
-             String songDetails = string.Empty;
+             String songDetails = null;
              foreach (Song song in getSongs())
              {
                 songDetails += song.getTitle() + " by " + song.getArtistNames() + "\n";
              }
-             return songDetails;
+             if (songDetails != null) { 
+                return songDetails;
+             }
+             return "Playlist does not yet contain any songs";
         }
 
-        public String playSonglist()
+       /* public String playSonglist()
         {
             if (currentSongIndex < songs.Count)
             {
@@ -46,8 +49,7 @@ namespace Spotivy
                 currentSongIndex = 0;
                 return "No songs left. Starting from beginning.";
             }
-
-        }
+        }*/
 
 
         /* public String getSonglistInfo()

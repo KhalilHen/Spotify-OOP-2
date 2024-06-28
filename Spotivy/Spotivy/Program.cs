@@ -14,6 +14,7 @@ namespace Spotivy
             List<Playlist> playlists1 = new List<Playlist>();
             List<Playlist> playlists2 = new List<Playlist>();
             List<Playlist> playlists3 = new List<Playlist>();
+            List<Playlist> allPlaylists = new List<Playlist>();
             List<User> friendlist1 = new List<User>();
             List<User> friendlist2 = new List<User>();
             List<User> friendlist3 = new List<User>();
@@ -77,7 +78,9 @@ namespace Spotivy
             allUsers.Add(user2);
             allUsers.Add(user3);
             allArtists.Add(artist1);
-            
+            allPlaylists.Add(playlist1);
+            allPlaylists.Add(playlist2);
+
             allSongs.Add(song1);
             allSongs.Add(song2);
             allSongs.Add(song3);
@@ -87,7 +90,7 @@ namespace Spotivy
             allSonglists.Add(playlist1);
             allSonglists.Add(playlist2);
 
-            Client client = new Client(allUsers, allArtists, allSongs, allSonglists);
+            Client client = new Client(allUsers, allArtists, allSongs, allSonglists, allPlaylists);
 
             
 
@@ -127,63 +130,9 @@ namespace Spotivy
                                 break;
 
 
-                           /*case "playlist":
-                                if (commandParts.Length >= 3)
-                                {
-                                    string subCommand = commandParts[1].ToLower();
-                                    string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
-
-                                    switch (subCommand)
-                                    {
-
-                                        case "view":
-                                            if (playlistName == "all")
-                                            {
-                                                Console.WriteLine(mainUser.getPlaylistsToString());
-                                            }
-                                            else
-                                            {
-                                                foreach (Playlist playlist in mainUser.getPlaylists())
-                                                {
-                                                    if (playlist.getTitle() == playlistName)
-                                                    {
-                                                        Console.WriteLine(playlist.getSongsToString());
-                                                    }
-                                                }
-                                            }
-                                            break;
-                                        case "play":
-                                            foreach (Playlist playlist in mainUser.getPlaylists())
-                                            {
-                                                if (playlist.getTitle() == playlistName)
-                                                {
-                                                    foreach (Song song in playlist.getSongs())
-                                                    {
-                                                        Console.WriteLine(playlist.playSonglist());
-                                                        System.Threading.Thread.Sleep(5000);
-                                                    }
-                                                }
-                                            }
-                                            break;
-                                        case "create":
-                                            mainUser.createPlaylist(playlistName);
-                                            Console.WriteLine("Playlist created");
-                                            break;
-                                        case "remove":
-                                            mainUser.removePlaylist(playlistName);
-                                            Console.WriteLine("Playlist removed");
-                                            break;
-                                        default:
-                                            Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
-                                            break;
-                                    }
-                                }
-
-                                else
-                                {
-                                    Console.WriteLine("Invalid playlist command. Usage: playlist <subcommand> <name>");
-                                }
-                                break;*/
+                            case "playlist":
+                                Console.WriteLine(client.playlist(commandParts));
+                                break;
                             case "help":
                                 Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
                                 break;

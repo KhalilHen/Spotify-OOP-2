@@ -36,14 +36,15 @@ namespace Spotivy
             }
         }
 
-        public void createPlaylist(string playlistName)
+        public Playlist createPlaylist(string playlistName)
         {
             List<Song> playlistSongs = new List<Song>();
             Playlist newPlaylist = new Playlist(playlistName, playlistSongs);
             playlists.Add(newPlaylist);
+            return newPlaylist;
         }
 
-        public void removePlaylist(string playlistName)
+        public Playlist removePlaylist(string playlistName)
         {
             Playlist toRemove = null;
             foreach (Playlist playlist in playlists)
@@ -54,8 +55,10 @@ namespace Spotivy
                 }
             }
             if (toRemove != null) {
-            playlists.Remove(toRemove);
+                playlists.Remove(toRemove);
+                return toRemove;
             }
+            return null;
         }
 
 
