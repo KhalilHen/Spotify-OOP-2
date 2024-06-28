@@ -41,27 +41,17 @@ namespace Spotivy
             singles1.Add(song5);
             singles1.Add(song6);
 
-
-
-
-
-
             List<Song> playlistSongs1 = new List<Song>();
             List<Song> playlistSongs2 = new List<Song>();
-
-           
-            
-            
-
-          
+                                             
             Playlist playlist1 = new Playlist("Playlist1", playlistSongs1);
             Playlist playlist2 = new Playlist("Playlist2", playlistSongs2);
+            Songlist album1 = new Songlist("Album1", singles1);
                       
             List<User> allUsers = new List<User>();
             List<Artist> allArtists = new List<Artist>();
             List<Song> allSongs = new List<Song>();
             List<Songlist> allSonglists = new List<Songlist>();
-
 
             // add songs to playlist
             playlistSongs1.Add(song1);
@@ -87,8 +77,8 @@ namespace Spotivy
             allSongs.Add(song4);
             allSongs.Add(song5);
             allSongs.Add(song6);
-            allSonglists.Add(playlist1);
-            allSonglists.Add(playlist2);
+            allSonglists.Add(album1);
+            
 
             Client client = new Client(allUsers, allArtists, allSongs, allSonglists, allPlaylists);
 
@@ -128,8 +118,11 @@ namespace Spotivy
                             case "playlist":
                                 Console.WriteLine(client.playlist(commandParts));
                                 break;
+                            case "album":
+                                Console.WriteLine(client.album(commandParts));
+                                break;
                             case "users":
-                                Console.WriteLine(client.users(commandParts));
+                                Console.WriteLine(client.userList(commandParts));
                                 break;
                             case "help":
                                 Console.WriteLine("Available commands: play, pause, resume, info, playlist, help\n");
@@ -141,6 +134,8 @@ namespace Spotivy
                                 Console.WriteLine(">playlist view <title>/all: Views all songs in selected playlist, or shows all playlists belonging to that user");
                                 Console.WriteLine(">playlist create <title>: Creates a new playlist with the selected title");
                                 Console.WriteLine(">playlist remove <title>: Removes playlist that matches selected title");
+                                Console.WriteLine(">album play <title>: Plays album that matches selected title");
+                                Console.WriteLine(">album view <title>: Views all songs in selected album");
                                 Console.WriteLine(">users: View all users on the application");
                                 Console.WriteLine(">help: List of commands");
                                 break;
