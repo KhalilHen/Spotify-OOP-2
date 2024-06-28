@@ -16,11 +16,29 @@ namespace Spotivy
         {
             this.name = name;
             this.albums = albums;
-            this.singles = singles;     
+            this.singles = singles;
         }
+
+
+
+
+
+
+
 
         public String getName() { return name; }
         public List<Song> getSingles() { return singles; }
-        public List <Songlist> getAlbums() {  return albums; }
+        public List<Songlist> getAlbums() { return albums; }
+
+
+        public static void artistList(List<Artist> artists)
+        {
+            foreach (Artist artist in artists)
+
+            {
+                Console.WriteLine(artist.getName());
+
+            }
+        }
     }
 }
