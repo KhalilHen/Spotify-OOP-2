@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Intrinsics.X86;
@@ -15,223 +16,195 @@ namespace Spotivy
         List<Artist> artists;
         List<Song> songs;
         List<Songlist> songlists;
-        Boolean isLoggedIn;
+        List<Playlist> playlists;
         Song currentSong;
-        String songInfo;
 
-        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists)
+
+        public Client(List<User> users, List<Artist> artists, List<Song> songs, List<Songlist> songlists, List<Playlist> playlists)
         {
             this.users = users;
             this.artists = artists;
             this.songs = songs;
             this.songlists = songlists;
+            this.playlists = playlists;
+        }
+       
+        public String play(String[] commandParts)
+        {
+           
+            if (commandParts.Length >= 2)
+            {
+                String songTitle = string.Join(" ", commandParts, 1, commandParts.Length - 1);               
+
+                foreach (Song song in songs)
+                {
+                    if (song.getTitle() == songTitle)
+                    {
+                        currentSong = song;
+                        return song.playSong();
+                    }
+                }
+                return "This song does not exist\n";               
+            }
+            else
+            {
+                return "Invalid play command. Usage: play <title>\n";
+            }
         }
 
-        public void client()
+        public String pause(String[] commandParts)
         {
-            logIn();
-            while (isLoggedIn == true)
+            if (commandParts.Length == 1 && currentSong != null)
             {
-                Boolean playing = false;
-                Boolean paused = false;
-                Console.WriteLine("Logged in succesfully.\n");
-                while (true)
+                return currentSong.pauseSong();
+            }
+            else if (commandParts.Length == 1 && currentSong == null)
+            {
+                return "There is no song playing\n";
+            }
+            else
+            {
+                return "Invalid pause command. Usage: pause\n";
+            }
+        }
+
+        public String resume(String[] commandParts)
+        {
+            if (commandParts.Length == 1 && currentSong != null)
+            {
+                return currentSong.resumeSong();
+            }
+            else if (commandParts.Length == 1 && currentSong == null)
+            {
+                return "No song has been selected";
+            }
+            else
+            {
+                return "Invalid resume command. Usage: resume\n";
+            }
+
+        }
+
+        public String info(String[] commandParts)
+        {
+            if (commandParts.Length >= 2)
+            {
+                String entityName = string.Join(" ", commandParts, 1, commandParts.Length - 1);
+
+                foreach (Song song in songs)
                 {
-                    Console.Write("> ");
-                    String input = Console.ReadLine();
-                    String[] commandParts = input.Split(' ');
-
-                    if (commandParts.Length == 0) continue;
-
-                    String command = commandParts[0].ToLower();
-       
-                    switch (command)
+                    if (song.getTitle() == entityName)
                     {
-                        case "play":
-                            if (commandParts.Length >= 2)
-                            {
-                                String subCommand = commandParts[1].ToLower();
-                                String songTitle = string.Join(" ", commandParts, 1, commandParts.Length - 1);
-                                Boolean found = false;
-
-                                foreach (Song song in songs)
-                                {
-                                    if (song.getTitle() == songTitle)
-                                    {
-                                        Console.WriteLine(song.playSong());
-                                        currentSong = song;
-                                        playing = true;
-                                        found = true;
-                                    }
-                                }
-                                if (!found)
-                                {
-                                    Console.WriteLine("This song does not exist\n");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid play command. Usage: play <title>\n");
-                            }
-                            break;
-
-                        case "pause":
-                            if (commandParts.Length == 1 && playing == true)
-                            {
-                                Console.WriteLine(currentSong.pauseSong());
-                                playing = false;
-                                paused = true;
-                               
-                            }
-                            else if (commandParts.Length == 1 && playing == false)
-                            {
-                                Console.WriteLine("There is no song playing\n");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid pause command. Usage: pause\n");
-                            }
-                            break;
-
-                        case "resume":
-                            if (commandParts.Length == 1 && paused == true)
-                            {
-                                Console.WriteLine(currentSong.playSong());
-                                playing = true;
-                                paused = false;
-                            }
-                            else if (commandParts.Length == 1 && paused == false && playing == true)
-                            {
-                                Console.WriteLine("The song is still playing\n");
-                            }
-                            else if (commandParts.Length == 1 && playing == false)
-                            {
-                                Console.WriteLine("There is no song playing\n");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid resume command. Usage: resume\n");
-                            }
-                            break;
-
-                        case "info":
-                            if (commandParts.Length >= 2)
-                            {
-                               
-                                String entityName = string.Join(" ", commandParts, 1, commandParts.Length - 1);
-                                Boolean found = false;
-
-                                foreach (Song song in songs)
-                                {
-                                    if (song.getTitle() == entityName)
-                                    {
-                                        Console.WriteLine(song.displayInfo());
-                                        found = true;
-                                    }
-                                }
-                                if (!found) {
-                                    foreach (Songlist songlist in songlists)
-                                    {
-                                        if (songlist.getTitle() == entityName)
-                                        {
-                                        /*    TO DO Console.WriteLine(songlist.displayInfo());*/
-                                            found = true;
-                                        }
-                                    }
-                                }
-                                if (!found) {
-                                    foreach (User user in users)
-                                    {
-                                        if (user.getName() == entityName)
-                                        {
-                                        /*    TO DO Console.WriteLine(user.displayInfo());*/
-                                            found = true;
-                                        }
-                                    }
-                                }
-                                if (!found)
-                                {
-                                    foreach (Artist artist in artists)
-                                    {
-                                        if (artist.getName() == entityName)
-                                        {
-                                        /*    TO DO Console.WriteLine(artist.displayInfo());*/
-                                            found = true;
-                                        }
-                                    }
-                                }
-                                if (!found)
-                                {
-                                    Console.WriteLine("This entity does not exist\n");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid info command. Usage: info <song>/<album>/<playlist>/<user>/<artist>\n");
-                            }
-                            break;
-
-
-                        case "playlist":
-                            if (commandParts.Length >= 3)
-                            {
-                                string subCommand = commandParts[1].ToLower();
-                                string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
-                                                               
-                                        switch (subCommand)
-                                        {
-                                            case "view":
-                                                foreach (Songlist songlist in mainUser.getSonglistList())
-                                                {
-                                                    if (songlist.getTitle() == playlistName)
-                                                    {
-                                                        Console.WriteLine(songlist.getSonglistToString());
-                                                    }
-                                                }
-                                                break;
-                                            case "play":
-                                                foreach (Songlist songlist in mainUser.getSonglistList())
-                                                {
-                                                    if (songlist.getTitle() == playlistName)
-                                                    {
-                                                        foreach (Song song in songlist.getSonglist())
-                                                        {
-                                                            Console.WriteLine(songlist.playSonglist());
-                                                            System.Threading.Thread.Sleep(5000);
-                                                        }
-                                                    }
-                                                }
-                                                break;
-                                            case "create":
-                                                mainUser.createSonglist(playlistName);
-                                                Console.WriteLine("Playlist created");
-                                                break;
-                                            case "remove":
-                                                /*TO DO */
-                                                Console.WriteLine("command not yet added");
-                                                break;
-                                            default:
-                                                Console.WriteLine("Invalid playlist subcommand. Available subcommands: view, play, create, remove");
-                                                break;
+                        return song.displayInfo();
                                             }
-                                        }
-                                                            
-                            else
-                            {
-                                Console.WriteLine("Invalid playlist command. Usage: playlist <subcommand> <name>");
-                            }
-                            break;
-                        case "help":
-                            Console.WriteLine("Available commands: play, pause, resume, info, playlist, help, exit");
-                            break;
-                        default:
-                            Console.WriteLine("Unknown command. Type 'help' for a list of commands.");
-                            break;
+                }
+                foreach (Songlist songlist in songlists)
+                {
+                    if (songlist.getTitle() == entityName)
+                    {
+                       /* TO DO 
+                        * Console.WriteLine(songlist.displayInfo());*/
+                           
+                    }
+                }
+                foreach (User user in users)
+                {
+                    if (user.getName() == entityName)
+                    {
+                        /*TO DO
+                         * Console.WriteLine(user.displayInfo());*/
+                           
+                    }
+                }
+                foreach (Artist artist in artists)
+                {
+                    if (artist.getName() == entityName)
+                    {
+                        /*TO DO 
+                         * Console.WriteLine(artist.displayInfo());*/
+                            
+                    }
+                }           
+                return "This entity does not exist\n";                
+            }
+            else
+            {
+                return "Invalid info command. Usage: info <song>/<album>/<playlist>/<user>/<artist>\n";
+            }
+        }
+
+        public String playlist(String[] commandParts)
+        {
+            if (commandParts.Length >= 3)
+            {
+                string subCommand = commandParts[1].ToLower();
+                string playlistName = string.Join(" ", commandParts, 2, commandParts.Length - 2);
+
+                switch (subCommand)
+                {
+
+                    case "view":
+                        return viewPlaylist(playlistName);
+                    case "play":
+                        return playPlaylist(playlistName);
+                    case "create":
+                        playlists.Add(mainUser.createPlaylist(playlistName));
+                        return "Playlist created";
+                    case "remove":
+                        if (mainUser.removePlaylist(playlistName) != null)
+                        {                                                   
+                        playlists.Remove(mainUser.removePlaylist(playlistName));
+                        return "Playlist removed";
+                        }
+                        return "Playlist does not exist";
+                    default:
+                        return "Invalid playlist subcommand. Available subcommands: view, play, create, remove";                        
+                }
+            }
+            else
+            {
+                return "Invalid playlist command. Usage: playlist <subcommand> <name>";
+            }
+        }
+
+        internal String viewPlaylist(String playlistName)
+        {
+            if (playlistName == "all")
+            {
+                return mainUser.getPlaylistsToString();
+            }
+            else
+            {
+                foreach (Playlist playlist in playlists)
+                {
+                    if (playlist.getTitle() == playlistName)
+                    {
+                        return playlist.getSongsToString();
                     }
                 }
             }
+            return "Playlist does not exist";
         }
-       
+
+        internal String playPlaylist(String playlistName)
+        {
+            
+            foreach (Playlist playlist in playlists)
+            {
+                if (playlist.getTitle() == playlistName)
+                {
+                    return playlist.playSonglist();
+                }
+            }
+            return "Playlist does not exist";
+        }
+
+        public String users(String[] commandParts)
+        {
+
+            return mainUser.userList(users, mainUser);
+        }
+
         public Boolean logIn()
         {
             Console.WriteLine("Welcome to Spotivy!");
@@ -247,14 +220,15 @@ namespace Spotivy
                     if (user.getName() == chosenUser)
                     {
                         mainUser = user;
-                        return isLoggedIn = true;
+                        return true;
                     }
                 }
-            return isLoggedIn = false;
+            return false;
         }
 
-        public String getAllSongs()
+        public String getAllSongsToString()
         {
+            String songInfo = string.Empty;
             Console.WriteLine("");
             foreach (Song song in songs)
             {
@@ -262,6 +236,5 @@ namespace Spotivy
             }
             return songInfo;
         }
-
     }
 }
