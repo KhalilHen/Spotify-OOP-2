@@ -118,11 +118,21 @@ namespace Spotivy
                             case "playlist":
                                 Console.WriteLine(client.playlist(commandParts));
                                 break;
+
                             case "album":
                                 Console.WriteLine(client.album(commandParts));
                                 break;
                             case "users":
                                 Console.WriteLine(client.userList(commandParts));
+                                break;
+
+                            case "artists":
+                                Console.WriteLine("A list of all the existing artist(s)");
+                                Artist.artistList(allArtists);
+
+
+
+
                                 break;
                             case "help":
                                 Console.WriteLine("Available commands: play, pause, resume, info, playlist, help\n");
